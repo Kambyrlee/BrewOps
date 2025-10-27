@@ -14,7 +14,7 @@ public abstract class Drink {
     private String type;    // Coffee, Tea, Lemonade
     private String directions;
     @Ignore
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
     @Ignore
     public Drink(String name, String type, double price, String directions) {
         this.name = name;
@@ -59,10 +59,10 @@ public abstract class Drink {
         this.directions = directions;
     }
 
-    public List<String> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 

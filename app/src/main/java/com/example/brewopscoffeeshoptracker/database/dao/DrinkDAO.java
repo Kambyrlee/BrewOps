@@ -24,7 +24,7 @@ public interface DrinkDAO {
 
     // COFFEE DRINKS
     @Insert
-    void insertCoffeeDrink(CoffeeDrink coffeeDrink);
+    long insertCoffeeDrink(CoffeeDrink coffeeDrink);
     @Delete
     void deleteCoffeeDrink(CoffeeDrink coffeeDrink);
     @Update
@@ -41,7 +41,7 @@ public interface DrinkDAO {
 
     // TEA DRINKS
     @Insert
-    void insertTeaDrink(TeaDrink teaDrink);
+    long insertTeaDrink(TeaDrink teaDrink);
     @Delete
     void deleteTeaDrink(TeaDrink teaDrink);
     @Update
@@ -59,7 +59,7 @@ public interface DrinkDAO {
 
     // OTHER DRINKS
     @Insert
-    void insertOtherDrink(OtherDrink otherDrink);
+    long insertOtherDrink(OtherDrink otherDrink);
     @Delete
     void deleteOtherDrink(OtherDrink otherDrink);
     @Update
