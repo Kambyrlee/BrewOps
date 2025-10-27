@@ -1,5 +1,8 @@
 package com.example.brewopscoffeeshoptracker.database.entities;
 
+import androidx.room.Entity;
+
+@Entity(tableName = "tea_drinks")
 public class TeaDrink extends Drink{
 
     private String teaType; // Black, Green, Herbal, etc.

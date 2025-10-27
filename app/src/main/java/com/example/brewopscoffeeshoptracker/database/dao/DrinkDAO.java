@@ -7,39 +7,72 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.brewopscoffeeshoptracker.database.entities.Drink;
-import com.example.brewopscoffeeshoptracker.database.entities.DrinkIngredientCrossRef;
-import com.example.brewopscoffeeshoptracker.database.relations.DrinkWithIngredients;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.relations.CoffeeDrinkWithIngredients;
+import com.example.brewopscoffeeshoptracker.database.relations.OtherDrinkWithIngredients;
+import com.example.brewopscoffeeshoptracker.database.relations.TeaDrinkWithIngredients;
 
 import java.util.List;
 
 @Dao
 public interface DrinkDAO {
 
+    // COFFEE DRINKS
     @Insert
-    void insertDrink(Drink drink);
-    @Update
-    void updateDrink(Drink drink);
+    void insertCoffeeDrink(CoffeeDrink coffeeDrink);
     @Delete
-    void deleteDrink(Drink drink);
+    void deleteCoffeeDrink(CoffeeDrink coffeeDrink);
+    @Update
+    void updateCoffeeDrink(CoffeeDrink coffeeDrink);
+    @Query("SELECT * FROM coffee_drinks")
+    List<CoffeeDrink> getAllCoffeeDrinks();
 
-    //Get all drinks
-    @Query("SELECT * FROM drinks ORDER BY name ASC")
-    List<Drink> getAllDrinks();
-
-    //Get a specific drink by ID
-    @Query("SELECT * FROM drinks WHERE drinkID = :id")
-    Drink getDrinkByID(int id);
-
-    @Transaction
-    @Query("SELECT * FROM drinks WHERE drinkID = :id")
-    DrinkWithIngredients getDrinkWithIngredients(int id);
+    @Query("SELECT * FROM coffee_drinks WHERE drinkID = :drinkID")
+    CoffeeDrink getCoffeeDrinkByID(int drinkID);
 
     @Transaction
-    @Query("SELECT * FROM drinks")
-    List<DrinkWithIngredients> getAllDrinksWithIngredients();
+    @Query("SELECT * FROM coffee_drinks WHERE drinkID = :drinkID")
+    CoffeeDrinkWithIngredients getCoffeeDrinkWithIngredients(int drinkID);
 
-    @Query("SELECT * FROM drinks WHERE type = :type")
-    List<Drink> getDrinksByType(String type);
+    // TEA DRINKS
+    @Insert
+    void insertTeaDrink(TeaDrink teaDrink);
+    @Delete
+    void deleteTeaDrink(TeaDrink teaDrink);
+    @Update
+    void updateTeaDrink(TeaDrink teaDrink);
+    @Query("SELECT * FROM tea_drinks")
+    List<TeaDrink> getAllTeaDrinks();
+
+    @Query("SELECT * FROM tea_drinks WHERE drinkID = :drinkID")
+    TeaDrink getTeaDrinkByID(int drinkID);
+
+    @Transaction
+    @Query("SELECT * FROM tea_drinks WHERE drinkID = :drinkID")
+    TeaDrinkWithIngredients getTeaDrinkWithIngredients(int drinkID);
+
+
+    // OTHER DRINKS
+    @Insert
+    void insertOtherDrink(OtherDrink otherDrink);
+    @Delete
+    void deleteOtherDrink(OtherDrink otherDrink);
+    @Update
+    void updateOtherDrink(OtherDrink otherDrink);
+    @Query("SELECT * FROM other_drinks")
+    List<OtherDrink> getAllOtherDrinks();
+
+    @Query("SELECT * FROM other_drinks WHERE drinkID = :drinkID")
+    OtherDrink getOtherDrinkByID(int drinkID);
+
+    @Transaction
+    @Query("SELECT * FROM other_drinks WHERE drinkID = :drinkID")
+    OtherDrinkWithIngredients getOtherDrinkWithIngredients(int drinkID);
+
 
 }

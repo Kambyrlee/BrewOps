@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey;
 
 import java.util.List;
 
-@Entity(tableName = "drinks")
 public abstract class Drink {
     @PrimaryKey(autoGenerate = true)
     private int drinkID;

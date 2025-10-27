@@ -9,13 +9,23 @@ import androidx.room.RoomDatabase;
 import com.example.brewopscoffeeshoptracker.database.dao.CrossRefDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.DrinkDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.IngredientDAO;
-import com.example.brewopscoffeeshoptracker.database.entities.Drink;
-import com.example.brewopscoffeeshoptracker.database.entities.DrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrinkIngredientCrossRef;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
 
 @Database(
-        entities = {Drink.class, Ingredient.class, DrinkIngredientCrossRef.class},
-        version = 1,
+        entities = {CoffeeDrink.class,
+                TeaDrink.class,
+                OtherDrink.class,
+                Ingredient.class,
+                CoffeeDrinkIngredientCrossRef.class,
+                TeaDrinkIngredientCrossRef.class,
+                OtherDrinkIngredientCrossRef.class},
+        version = 2,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {

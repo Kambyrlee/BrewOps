@@ -1,21 +1,46 @@
 package com.example.brewopscoffeeshoptracker.database.dao;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
-import com.example.brewopscoffeeshoptracker.database.entities.DrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
 
 @Dao
 public interface CrossRefDAO {
+
+    //COFFEE DRINKS
     @Insert
-    void insertCrossRef(DrinkIngredientCrossRef crossRef);
-    @Update
-    void updateCrossRef(DrinkIngredientCrossRef crossRef);
-    @Delete
-    void deleteCrossRef(DrinkIngredientCrossRef crossRef);
-    @Query("DELETE FROM drink_ingredient_cross_ref WHERE drinkID = :id")
-    void deleteAllForDrink(int id);
+    void insertCoffeeCrossRef(CoffeeDrinkIngredientCrossRef crossRef);
+
+    @Query("DELETE FROM coffee_ingredients WHERE drinkID = :drinkID")
+    void deleteIngredientsFromCoffeeDrink(int drinkID);
+
+    @Query("DELETE FROM coffee_ingredients WHERE ingredientID = :ingredientID")
+    void deleteAllCoffeeDrinksWithIngredient(int ingredientID);
+
+    //TEA DRINKS
+
+    @Insert
+    void insertTeaCrossRef(TeaDrinkIngredientCrossRef crossRef);
+
+    @Query("DELETE FROM tea_ingredients WHERE drinkID = :drinkID")
+    void deleteIngredientsFromTeaDrink(int drinkID);
+    @Query("DELETE FROM tea_ingredients WHERE ingredientID = :ingredientID")
+    void deleteAllTeaDrinksWithIngredient(int ingredientID);
+
+    // OTHER DRINKS
+
+    @Insert
+    void insertOtherCrossRef(OtherDrinkIngredientCrossRef crossRef);
+
+    @Query("DELETE FROM other_ingredients WHERE drinkID = :drinkID")
+    void deleteIngredientsFromOtherDrink(int drinkID);
+
+    @Query("DELETE FROM other_ingredients WHERE ingredientID = :ingredientID")
+    void deleteAllOtherDrinksWithIngredient(int ingredientID);
+
+
 }

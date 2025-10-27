@@ -42,4 +42,6 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     androidTestImplementation(libs.room.testing)
 
+    implementation(libs.viewpager2)
+
 }

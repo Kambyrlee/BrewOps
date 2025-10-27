@@ -4,20 +4,20 @@ import androidx.room.Embedded;
 import androidx.room.Junction;
 import androidx.room.Relation;
 
-import com.example.brewopscoffeeshoptracker.database.entities.Drink;
-import com.example.brewopscoffeeshoptracker.database.entities.DrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredientCrossRef;
 
 import java.util.List;
 
-public class DrinkWithIngredients {
+public class OtherDrinkWithIngredients {
     @Embedded
-    public Drink drink;
+    public CoffeeDrink drink;
 
     @Relation(
             parentColumn = "drinkID",
             entityColumn = "ingredientID",
-            associateBy = @Junction(DrinkIngredientCrossRef.class)
+            associateBy = @Junction(OtherDrinkIngredientCrossRef.class)
     )
-    public List<Ingredient> ingredients;
+    public List<Ingredient> ingredientList;
 }
