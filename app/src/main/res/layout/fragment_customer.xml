@@ -1,13 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/gray">
 
-    <TextView
+    <EditText
+        android:id="@+id/customer_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Search customers..."
+        android:padding="12dp"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:background="@drawable/search_bar_bg"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/customers_banner_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Customers"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:id="@+id/customer_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@drawable/search_bar_bg">
+
+        <TextView
+            android:id="@+id/view_all_customers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All Customers"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/customer_list_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
 </LinearLayout>

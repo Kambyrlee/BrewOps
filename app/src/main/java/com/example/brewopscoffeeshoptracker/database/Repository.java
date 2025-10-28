@@ -3,10 +3,12 @@ package com.example.brewopscoffeeshoptracker.database;
 import android.app.Application;
 
 import com.example.brewopscoffeeshoptracker.database.dao.CrossRefDAO;
+import com.example.brewopscoffeeshoptracker.database.dao.CustomerDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.DrinkDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.IngredientDAO;
 import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.Customer;
 import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
 import com.example.brewopscoffeeshoptracker.database.entities.OtherDrink;
@@ -23,6 +25,7 @@ import java.util.concurrent.Executors;
 public class Repository {
     private final DrinkDAO drinkDAO;
     private final IngredientDAO ingredientDAO;
+    private final CustomerDAO customerDAO;
     private final CrossRefDAO crossRefDAO;
     private final ExecutorService executor;
 
@@ -31,6 +34,7 @@ public class Repository {
         drinkDAO = db.drinkDAO();
         ingredientDAO = db.ingredientDAO();
         crossRefDAO = db.crossRefDAO();
+        customerDAO = db.customerDAO();
         executor = Executors.newSingleThreadExecutor();
     }
     public List<Drink> getAllDrinks() {
@@ -111,4 +115,23 @@ public class Repository {
         executor.execute(()-> crossRefDAO.deleteAllTeaDrinksWithIngredient(ingredientID));
         executor.execute(()-> crossRefDAO.deleteAllOtherDrinksWithIngredient(ingredientID));
     }
+
+    // CUSTOMERS
+
+    public List<Customer> getAllCustomers(){
+        return customerDAO.getAllCustomers();
+    }
+    public void insertCustomer(Customer customer){
+        executor.execute(()-> customerDAO.insert(customer));
+    }
+    public void updateCustomer(Customer customer) {
+        customerDAO.update(customer);
+    }
+    public void deleteCustomer(Customer customer) {
+        executor.execute(()-> customerDAO.delete(customer));
+    }
+    public List<Customer> searchCustomers(String query) {
+        return customerDAO.searchCustomers(query);
+    }
+
 }

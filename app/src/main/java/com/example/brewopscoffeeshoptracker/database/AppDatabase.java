@@ -6,13 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.brewopscoffeeshoptracker.database.dao.CrossRefDAO;
+import com.example.brewopscoffeeshoptracker.database.dao.CustomerDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.DrinkDAO;
 import com.example.brewopscoffeeshoptracker.database.dao.IngredientDAO;
 import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrinkIngredientCrossRef;
+import com.example.brewopscoffeeshoptracker.database.entities.Customer;
 import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
 import com.example.brewopscoffeeshoptracker.database.entities.OtherDrink;
@@ -20,6 +24,9 @@ import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredie
 import com.example.brewopscoffeeshoptracker.database.entities.TeaDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,16 +35,19 @@ import java.util.concurrent.Executors;
                 TeaDrink.class,
                 OtherDrink.class,
                 Ingredient.class,
+                Customer.class,
                 CoffeeDrinkIngredientCrossRef.class,
                 TeaDrinkIngredientCrossRef.class,
                 OtherDrinkIngredientCrossRef.class},
         version = 2,
         exportSchema = false
 )
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DrinkDAO drinkDAO();
     public abstract IngredientDAO ingredientDAO();
     public abstract CrossRefDAO crossRefDAO();
+    public abstract CustomerDAO customerDAO();
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWrite = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -68,6 +78,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 IngredientDAO ingredientDAO = database.ingredientDAO();
                 DrinkDAO drinkDAO = database.drinkDAO();
                 CrossRefDAO crossRefDAO = database.crossRefDAO();
+                CustomerDAO customerDAO = database.customerDAO();
 
                 // PREPOPULATE INGREDIENTS
 
@@ -136,7 +147,11 @@ public abstract class AppDatabase extends RoomDatabase {
                 crossRefDAO.insertOtherCrossRef(new OtherDrinkIngredientCrossRef((int)hotChocolateID, (int)milkID));
                 crossRefDAO.insertOtherCrossRef(new OtherDrinkIngredientCrossRef((int)hotChocolateID, (int)hotChocolateMixID));
 
+                // PREPOPULATE CUSTOMERS
 
+                customerDAO.insert(new Customer("Yuji Itadori", "Hot Chocolate", Date.from(LocalDate.of(2025,04,16).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+                customerDAO.insert(new Customer("Suguru Gojo", "Americano", Date.from(LocalDate.of(2025,06,19).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+                customerDAO.insert(new Customer("Nobara Kugisaki", "Chai Latte", Date.from(LocalDate.of(2025,10,22).atStartOfDay(ZoneId.systemDefault()).toInstant())));
             });
         }
     };
