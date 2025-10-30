@@ -49,9 +49,10 @@ public class RecipeFragment extends Fragment {
         return view;
     }
 
-    private void openDrinkList(String type){
+    protected void openDrinkList(String type){
         Bundle bundle = new Bundle();
         bundle.putString("drinkType", type);
+        bundle.putBoolean("isManager", false);
         DrinkListFragment fragment = new DrinkListFragment();
         fragment.setArguments(bundle);
         getParentFragmentManager().beginTransaction()
@@ -63,6 +64,7 @@ public class RecipeFragment extends Fragment {
     private void showSearchResults(String query) {
         Bundle bundle = new Bundle();
         bundle.putString("searchQuery", query);
+        bundle.putBoolean("isManager", false);
         DrinkListFragment fragment = new DrinkListFragment();
         fragment.setArguments(bundle);
         getParentFragmentManager().beginTransaction()

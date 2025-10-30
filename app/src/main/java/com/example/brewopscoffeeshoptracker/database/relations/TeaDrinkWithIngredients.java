@@ -6,13 +6,14 @@ import androidx.room.Relation;
 
 import com.example.brewopscoffeeshoptracker.database.entities.CoffeeDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrink;
 import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
 
 import java.util.List;
 
 public class TeaDrinkWithIngredients {
     @Embedded
-    public CoffeeDrink drink;
+    public TeaDrink drink;
 
     @Relation(
             parentColumn = "drinkID",

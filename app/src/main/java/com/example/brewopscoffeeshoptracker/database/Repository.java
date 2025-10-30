@@ -64,6 +64,12 @@ public class Repository {
     public void updateCoffeeDrink(CoffeeDrink drink) {
         executor.execute(()-> drinkDAO.updateCoffeeDrink(drink));
     }
+    public void deleteCoffeeDrink(int id) {
+        executor.execute(() -> {
+            CoffeeDrink drink = drinkDAO.getCoffeeDrinkByID(id);
+            if (drink != null) drinkDAO.deleteCoffeeDrink(drink);
+        });
+    }
 
 
     //TEA DRINKS
@@ -81,6 +87,12 @@ public class Repository {
     public void updateTeaDrink(TeaDrink drink) {
         executor.execute(()-> drinkDAO.updateTeaDrink(drink));
     }
+    public void deleteTeaDrink(int id) {
+        executor.execute(() -> {
+            TeaDrink drink = drinkDAO.getTeaDrinkByID(id);
+            if (drink != null) drinkDAO.deleteTeaDrink(drink);
+        });
+    }
 
     // OTHER DRINKS
     public List<OtherDrink> getAllOtherDrinks() { return drinkDAO.getAllOtherDrinks(); }
@@ -96,6 +108,12 @@ public class Repository {
     }
     public void updateOtherDrink(OtherDrink drink) {
         executor.execute(() -> drinkDAO.updateOtherDrink(drink));
+    }
+    public void deleteOtherDrink(int id) {
+        executor.execute(() -> {
+            OtherDrink drink = drinkDAO.getOtherDrinkByID(id);
+            if (drink != null) drinkDAO.deleteOtherDrink(drink);
+        });
     }
 
     //INGREDIENTS

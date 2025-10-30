@@ -1,17 +1,107 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/manager_recipe_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".UI.RecipeManagerFragment">
 
-
-    <androidx.fragment.app.FragmentContainerView
+    <LinearLayout
+        android:id="@+id/recipe_root"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.brewopscoffeeshoptracker.UI.RecipeFragment"
-        android:id="@+id/recipe_fragment_container"/>
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <!-- SEARCH BAR -->
+        <EditText
+            android:id="@+id/recipe_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search drinks..."
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:background="@drawable/search_bar_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white" />
+
+        <!-- DRINK TYPE CARDS -->
+        <GridLayout
+            android:id="@+id/drink_type_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:id="@+id/coffee_type"
+                style="@style/DrinkTypeCardStyle"
+                android:orientation="vertical"
+                android:layout_columnWeight="1">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/recipe_book"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coffee\nRecipes"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tea_type"
+                style="@style/DrinkTypeCardStyle"
+                android:orientation="vertical"
+                android:layout_columnWeight="1">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/recipe_book"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tea\nRecipes"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/other_type"
+                style="@style/DrinkTypeCardStyle"
+                android:orientation="vertical"
+                android:layout_columnWeight="1">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/recipe_book"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other\nRecipes"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </GridLayout>
+
+        <FrameLayout
+            android:id="@+id/recipe_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_recipe"
@@ -21,10 +111,9 @@
         android:src="@drawable/outline_add_circle_24"
         app:backgroundTint="@color/green_gray"
         app:tint="@color/white"
-        app:layout_anchor="@id/recipe_fragment_container"
+        app:layout_anchor="@id/recipe_content_container"
+        app:layout_anchorGravity="bottom|end"
         android:clickable="true"
         android:focusable="true"
-        app:layout_anchorGravity="bottom|end"
-        android:elevation="12dp"
-        />
+        android:elevation="12dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

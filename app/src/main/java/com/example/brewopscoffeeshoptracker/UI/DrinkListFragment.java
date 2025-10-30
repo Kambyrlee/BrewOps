@@ -29,6 +29,7 @@ public class DrinkListFragment extends Fragment {
     private Repository repository;
     private String drinkType;
     private String searchQuery;
+    private boolean isManager;
 
     @Nullable
     @Override
@@ -41,17 +42,39 @@ public class DrinkListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         repository = new Repository(requireActivity().getApplication());
-        adapter = new DrinkListAdapter(new ArrayList<>(), drink -> openDrinkDetails(drink));
-        recyclerView.setAdapter(adapter);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             drinkType = getArguments().getString("drinkType");
             searchQuery = getArguments().getString("searchQuery");
+            isManager = getArguments().getBoolean("isManager", false);
         }
-        loadDrinks();
+
+        adapter = new DrinkListAdapter(
+                new ArrayList<>(),
+                new DrinkListAdapter.OnDrinkClickListener() {
+                    @Override
+                    public void onDrinkClick(Drink drink) {
+                        openDrinkDetails(drink);
+                    }
+
+                    @Override
+                    public void onEditClick(Drink drink) {
+                        if (isManager) openRecipeEditor(drink);
+                    }
+                },
+                isManager
+        );
+        recyclerView.setAdapter(adapter);
+        getParentFragmentManager().setFragmentResultListener("drinkListUpdate", this, (requestKey, bundle) -> {
+            boolean refreshNeeded = bundle.getBoolean("refreshNeeded", false);
+            if (refreshNeeded) {
+                loadDrinks(); //
+            }
+        });
 
         return view;
     }
+
     private void loadDrinks() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
@@ -89,15 +112,37 @@ public class DrinkListFragment extends Fragment {
             });
         });
     }
-    private void openDrinkDetails(Drink drink){
+
+    private void openDrinkDetails(Drink drink) {
         Bundle bundle = new Bundle();
         bundle.putInt("drinkID", drink.getDrinkID());
         bundle.putString("drinkType", drinkType);
+
         DrinkDetailsFragment fragment = new DrinkDetailsFragment();
         fragment.setArguments(bundle);
+
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.recipe_content_container, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    private void openRecipeEditor(Drink drink) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("drinkID", drink.getDrinkID());
+        bundle.putString("drinkType", drinkType);
+
+        RecipeEditorFragment editor = new RecipeEditorFragment();
+        editor.setArguments(bundle);
+        requireActivity().findViewById(R.id.manager_fragment_container).setVisibility(View.VISIBLE);
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.manager_fragment_container, editor)
+                .addToBackStack(null)
+                .commit();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadDrinks();
     }
 }

@@ -3,6 +3,7 @@ package com.example.brewopscoffeeshoptracker.UI;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,13 +18,16 @@ public class DrinkListAdapter extends RecyclerView.Adapter<DrinkListAdapter.Drin
 
     public interface OnDrinkClickListener {
         void onDrinkClick(Drink drink);
+        void onEditClick(Drink drink);
     }
     private List<Drink> drinks;
     private final OnDrinkClickListener listener;
+    private boolean isManager = false;
 
-    public DrinkListAdapter(List<Drink> drinks, OnDrinkClickListener listener) {
+    public DrinkListAdapter(List<Drink> drinks, OnDrinkClickListener listener, boolean isManager) {
         this.drinks = drinks;
         this.listener = listener;
+        this.isManager = isManager;
     }
 
     @NonNull
@@ -39,6 +43,13 @@ public class DrinkListAdapter extends RecyclerView.Adapter<DrinkListAdapter.Drin
         Drink drink = drinks.get(position);
         holder.name.setText(drink.getName());
         holder.itemView.setOnClickListener(v -> listener.onDrinkClick(drink));
+
+        if (isManager) {
+            holder.editIcon.setVisibility(View.VISIBLE);
+            holder.editIcon.setOnClickListener(v-> listener.onEditClick(drink));
+        } else {
+            holder.editIcon.setVisibility(View.GONE);
+        }
     }
     @Override
     public int getItemCount() {
@@ -50,9 +61,11 @@ public class DrinkListAdapter extends RecyclerView.Adapter<DrinkListAdapter.Drin
     }
     static class DrinkViewHolder extends RecyclerView.ViewHolder {
         TextView name;
+        ImageView editIcon;
         DrinkViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.drink_name);
+            editIcon = itemView.findViewById(R.id.edit_icon);
         }
     }
 }
