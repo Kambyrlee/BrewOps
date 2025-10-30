@@ -16,7 +16,7 @@ public class ManagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new RecipeFragment();
+                return new RecipeManagerFragment();
             case 1:
                 return new CustomerFragment();
             case 2:
@@ -24,7 +24,7 @@ public class ManagerAdapter extends FragmentStateAdapter {
             case 3:
                 return new ReportingFragment();
             default:
-                return new RecipeFragment();
+                return new RecipeManagerFragment();
         }
     }
     @Override

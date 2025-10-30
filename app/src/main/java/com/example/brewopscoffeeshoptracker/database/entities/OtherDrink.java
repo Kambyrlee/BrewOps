@@ -9,6 +9,6 @@ public class OtherDrink extends Drink{
     }
     @Override
     public String getRecipe(){
-        return "FIXME: This is an Other Drink recipe";
+        return "~Sleepy Seal Drinks: No caffeine, just cozy — a seal’s treat between naps.~";
     }
 }

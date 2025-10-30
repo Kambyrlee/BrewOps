@@ -1,0 +1,30 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manager_recipe_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.RecipeManagerFragment">
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.example.brewopscoffeeshoptracker.UI.RecipeFragment"
+        android:id="@+id/recipe_fragment_container"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:src="@drawable/outline_add_circle_24"
+        app:backgroundTint="@color/green_gray"
+        app:tint="@color/white"
+        app:layout_anchor="@id/recipe_fragment_container"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_anchorGravity="bottom|end"
+        android:elevation="12dp"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

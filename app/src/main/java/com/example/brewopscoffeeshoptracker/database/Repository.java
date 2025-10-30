@@ -12,10 +12,13 @@ import com.example.brewopscoffeeshoptracker.database.entities.Customer;
 import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
 import com.example.brewopscoffeeshoptracker.database.entities.OtherDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.OtherDrinkIngredientCrossRef;
 import com.example.brewopscoffeeshoptracker.database.entities.TeaDrink;
+import com.example.brewopscoffeeshoptracker.database.entities.TeaDrinkIngredientCrossRef;
 import com.example.brewopscoffeeshoptracker.database.relations.CoffeeDrinkWithIngredients;
 import com.example.brewopscoffeeshoptracker.database.relations.OtherDrinkWithIngredients;
 import com.example.brewopscoffeeshoptracker.database.relations.TeaDrinkWithIngredients;
+import java.util.function.Consumer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +52,14 @@ public class Repository {
     public List<CoffeeDrink> getAllCoffeeDrinks() { return drinkDAO.getAllCoffeeDrinks();}
     public CoffeeDrink getCoffeeDrinkByID(int id) { return drinkDAO.getCoffeeDrinkByID(id);}
     public CoffeeDrinkWithIngredients getCoffeeDrinkWithIngredients(int id) { return drinkDAO.getCoffeeDrinkWithIngredients(id);}
-    public void insertCoffeeDrink(CoffeeDrink drink) {
-        executor.execute(()-> drinkDAO.insertCoffeeDrink(drink));}
+    public void insertCoffeeDrink(CoffeeDrink drink, Consumer<Long> callback) {
+        executor.execute(() -> {
+            long id = drinkDAO.insertCoffeeDrink(drink);
+            if (callback != null) {
+                callback.accept(id);
+            }
+        });
+    }
 
     public void updateCoffeeDrink(CoffeeDrink drink) {
         executor.execute(()-> drinkDAO.updateCoffeeDrink(drink));
@@ -61,8 +70,14 @@ public class Repository {
     public List<TeaDrink> getAllTeaDrinks() { return drinkDAO.getAllTeaDrinks(); }
     public TeaDrink getTeaDrinkByID(int id) { return drinkDAO.getTeaDrinkByID(id); }
     public TeaDrinkWithIngredients getTeaDrinkWithIngredients(int id) { return drinkDAO.getTeaDrinkWithIngredients(id); }
-    public void insertTeaDrink(TeaDrink drink) {
-        executor.execute(()-> drinkDAO.insertTeaDrink(drink)); }
+    public void insertTeaDrink(TeaDrink drink, Consumer<Long> callback) {
+        executor.execute(() -> {
+            long id = drinkDAO.insertTeaDrink(drink);
+            if (callback != null) {
+                callback.accept(id);
+            }
+        });
+    }
     public void updateTeaDrink(TeaDrink drink) {
         executor.execute(()-> drinkDAO.updateTeaDrink(drink));
     }
@@ -71,8 +86,14 @@ public class Repository {
     public List<OtherDrink> getAllOtherDrinks() { return drinkDAO.getAllOtherDrinks(); }
     public OtherDrink getOtherDrinkByID(int id) { return drinkDAO.getOtherDrinkByID(id); }
     public OtherDrinkWithIngredients getOtherDrinkWithIngredients(int id) { return drinkDAO.getOtherDrinkWithIngredients(id); }
-    public void insertOtherDrink(OtherDrink drink) {
-        executor.execute(()-> drinkDAO.insertOtherDrink(drink)); }
+    public void insertOtherDrink(OtherDrink drink, Consumer<Long> callback) {
+        executor.execute(() -> {
+            long id = drinkDAO.insertOtherDrink(drink);
+            if (callback != null) {
+                callback.accept(id);
+            }
+        });
+    }
     public void updateOtherDrink(OtherDrink drink) {
         executor.execute(() -> drinkDAO.updateOtherDrink(drink));
     }
@@ -114,6 +135,16 @@ public class Repository {
         executor.execute(()-> crossRefDAO.deleteAllCoffeeDrinksWithIngredient(ingredientID));
         executor.execute(()-> crossRefDAO.deleteAllTeaDrinksWithIngredient(ingredientID));
         executor.execute(()-> crossRefDAO.deleteAllOtherDrinksWithIngredient(ingredientID));
+    }
+
+    public void insertCoffeeCrossRef(CoffeeDrinkIngredientCrossRef crossRef) {
+        executor.execute(()-> crossRefDAO.insertCoffeeCrossRef(crossRef));
+    }
+    public void insertTeaCrossRef(TeaDrinkIngredientCrossRef crossRef) {
+        executor.execute(()-> crossRefDAO.insertTeaCrossRef(crossRef));
+    }
+    public void insertOtherCrossRef(OtherDrinkIngredientCrossRef crossRef) {
+        executor.execute(()-> crossRefDAO.insertOtherCrossRef(crossRef));
     }
 
     // CUSTOMERS

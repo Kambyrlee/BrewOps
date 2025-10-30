@@ -14,7 +14,7 @@ public class TeaDrink extends Drink{
 
     @Override
     public String getRecipe(){
-        return "FIXME: THIS IS A TEA RECIPE";
+        return "~Sleepy Seal Tea: Gentle waves of flavor for a peaceful seal nap.~";
     }
 
     public String getTeaType() {

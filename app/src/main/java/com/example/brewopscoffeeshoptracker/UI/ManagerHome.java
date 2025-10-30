@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.brewopscoffeeshoptracker.R;
@@ -15,6 +18,19 @@ public class ManagerHome extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_home);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.manager_root), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            int extraPadding = getResources().getDimensionPixelSize(R.dimen.horizontal_padding_extra);
+
+            v.setPadding(
+                    systemBars.left + extraPadding,
+                    systemBars.top,
+                    systemBars.right + extraPadding,
+                    systemBars.bottom
+            );
+            return insets;
+        });
 
         ViewPager2 viewPager = findViewById(R.id.manager_view_pager);
         TabLayout tabLayout = findViewById(R.id.manager_tab_nav);
@@ -34,7 +50,7 @@ public class ManagerHome extends AppCompatActivity {
                     tab.setText("Ingredients");
                     break;
                 case 3:
-                    tab.setText("Reporting");
+                    tab.setText("Reports");
                     break;
             }
         }).attach();

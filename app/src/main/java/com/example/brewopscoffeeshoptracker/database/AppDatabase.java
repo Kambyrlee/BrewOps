@@ -140,6 +140,10 @@ public abstract class AppDatabase extends RoomDatabase {
                 crossRefDAO.insertTeaCrossRef(new TeaDrinkIngredientCrossRef((int)chaiLatteID, (int)milkID));
                 crossRefDAO.insertTeaCrossRef(new TeaDrinkIngredientCrossRef((int)chaiLatteID, (int)chaiID));
 
+                crossRefDAO.insertTeaCrossRef(new TeaDrinkIngredientCrossRef((int)herbalTeaID, (int)waterID));
+                crossRefDAO.insertTeaCrossRef(new TeaDrinkIngredientCrossRef((int)herbalTeaID, (int)herbalBagID));
+
+
                 crossRefDAO.insertOtherCrossRef(new OtherDrinkIngredientCrossRef((int)lemonadeID, (int)waterID));
                 crossRefDAO.insertOtherCrossRef(new OtherDrinkIngredientCrossRef((int)lemonadeID, (int)sugarID));
                 crossRefDAO.insertOtherCrossRef(new OtherDrinkIngredientCrossRef((int)lemonadeID, (int)lemonJuiceID));

@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/recipe_editor_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create or Edit Recipe"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp" />
+
+    <EditText
+        android:id="@+id/edit_recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Drink Name" />
+
+    <AutoCompleteTextView
+        android:id="@+id/dropdown_recipe_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Drink Type"
+        android:inputType="none"
+        android:focusable="true"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:dropDownHeight="wrap_content"
+        android:dropDownVerticalOffset="8dp"
+        />
+    <AutoCompleteTextView
+        android:id="@+id/dropdown_tea_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Tea Type"
+        android:visibility="gone"
+        android:inputType="none"
+        android:focusable="true"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:dropDownVerticalOffset="8dp"
+        android:dropDownHeight="wrap_content"
+        />
+
+    <EditText
+        android:id="@+id/edit_recipe_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Drink Price" />
+
+    <Spinner
+        android:id="@+id/spinner_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:spinnerMode="dropdown"
+        android:gravity="center_vertical"
+        android:prompt="@string/select_ingredients_prompt"
+        />
+    <TextView
+        android:id="@+id/ingredient_selected_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No ingredients selected"
+        android:textColor="@color/black"
+        android:paddingStart="8dp"
+        android:layout_marginTop="4dp"/>
+
+    <EditText
+        android:id="@+id/edit_recipe_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Instructions/Description"
+        android:minLines="3"
+        android:gravity="top" />
+
+    <Button
+        android:id="@+id/button_save_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Recipe"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

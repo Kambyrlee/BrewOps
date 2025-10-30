@@ -10,6 +10,6 @@ public class CoffeeDrink extends Drink{
     }
     @Override
     public String getRecipe(){
-        return "FIXME: THIS IS A COFFEE RECIPE";
+        return "~Sleepy Seal Coffee: Strong enough to wake even the sleepiest of seals.~";
     }
 }

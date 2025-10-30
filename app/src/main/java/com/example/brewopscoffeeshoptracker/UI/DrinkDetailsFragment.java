@@ -17,7 +17,11 @@ import com.example.brewopscoffeeshoptracker.R;
 import com.example.brewopscoffeeshoptracker.database.Repository;
 import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
+import com.example.brewopscoffeeshoptracker.database.relations.CoffeeDrinkWithIngredients;
+import com.example.brewopscoffeeshoptracker.database.relations.OtherDrinkWithIngredients;
+import com.example.brewopscoffeeshoptracker.database.relations.TeaDrinkWithIngredients;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrinkDetailsFragment extends Fragment {
@@ -46,34 +50,59 @@ public class DrinkDetailsFragment extends Fragment {
 
         return view;
     }
-    private void loadDrink(){
-        Drink drink = null;
+    private void loadDrink() {
+        new Thread(() -> {
+            Drink drink = null;
+            List<Ingredient> ingredientList = new ArrayList<>();
 
-        switch (drinkType) {
-            case "Coffee":
-                drink = repository.getCoffeeDrinkByID(drinkID);
-                break;
-            case "Tea":
-                drink = repository.getTeaDrinkByID(drinkID);
-                break;
-            case "Other":
-                drink = repository.getOtherDrinkByID(drinkID);
-                break;
-        }
+            switch (drinkType) {
+                case "Coffee":
+                    CoffeeDrinkWithIngredients coffee = repository.getCoffeeDrinkWithIngredients(drinkID);
+                    if (coffee != null) {
+                        drink = coffee.drink;
+                        ingredientList = coffee.ingredientList;
+                    }
+                    break;
 
+                case "Tea":
+                    TeaDrinkWithIngredients tea = repository.getTeaDrinkWithIngredients(drinkID);
+                    if (tea != null) {
+                        drink = tea.drink;
+                        ingredientList = tea.ingredientList;
+                    }
+                    break;
+
+                case "Other":
+                    OtherDrinkWithIngredients other = repository.getOtherDrinkWithIngredients(drinkID);
+                    if (other != null) {
+                        drink = other.drink;
+                        ingredientList = other.ingredientList;
+                    }
+                    break;
+            }
+
+            Drink finalDrink = drink;
+            List<Ingredient> finalIngredients = ingredientList;
+            requireActivity().runOnUiThread(() -> showDrinkDetails(finalDrink, finalIngredients));
+
+        }).start();
+    }
+    private void showDrinkDetails(Drink drink, List<Ingredient> ingredientList) {
         if (drink != null) {
-            name.setText(drink.getName());
-            String recipeDetails = drink.getRecipe();
+                name.setText(drink.getName());
+                String recipeDetails = drink.getRecipe();
 
-            List<Ingredient> ingredientList = drink.getIngredients();
             SpannableStringBuilder bulletList = new SpannableStringBuilder();
 
-            for(Ingredient ingredient : ingredientList) {
-                String itemText = "- 1 Serving " + ingredient.getName();
-
-                SpannableString bulletItem = new SpannableString(itemText + "\n");
-                bulletItem.setSpan(new BulletSpan(20), 0, bulletItem.length(), 0);
-                bulletList.append(bulletItem);
+            if (ingredientList != null && !ingredientList.isEmpty()) {
+                for (Ingredient ingredient : ingredientList) {
+                    String itemText = "1 serving " + ingredient.getName();
+                    SpannableString bulletItem = new SpannableString(itemText + "\n");
+                    bulletItem.setSpan(new BulletSpan(20), 0, bulletItem.length(), 0);
+                    bulletList.append(bulletItem);
+                }
+            } else {
+                bulletList.append("No ingredients listed.");
             }
             ingredients.setText(bulletList);
             directions.setText(drink.getDirections());
