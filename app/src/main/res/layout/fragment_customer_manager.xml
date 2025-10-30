@@ -1,0 +1,49 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manager_customer_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".UI.CustomerManagerFragment">
+
+    <LinearLayout
+        android:id="@+id/customer_manager_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/customer_search_bar_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search customers..."
+            android:padding="12dp"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:background="@drawable/search_bar_bg"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp" />
+
+        <FrameLayout
+            android:id="@+id/customer_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:src="@drawable/outline_add_circle_24"
+        app:backgroundTint="@color/green_gray"
+        app:tint="@color/white"
+        app:layout_anchor="@id/customer_manager_content"
+        app:layout_anchorGravity="bottom|end"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="12dp"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

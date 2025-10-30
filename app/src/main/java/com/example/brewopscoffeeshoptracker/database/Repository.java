@@ -174,13 +174,16 @@ public class Repository {
         executor.execute(()-> customerDAO.insert(customer));
     }
     public void updateCustomer(Customer customer) {
-        customerDAO.update(customer);
+        executor.execute(()-> customerDAO.update(customer));
     }
     public void deleteCustomer(Customer customer) {
         executor.execute(()-> customerDAO.delete(customer));
     }
     public List<Customer> searchCustomers(String query) {
         return customerDAO.searchCustomers(query);
+    }
+    public Customer getCustomerByID(int ID){
+        return customerDAO.getCustomerByID(ID);
     }
 
 }

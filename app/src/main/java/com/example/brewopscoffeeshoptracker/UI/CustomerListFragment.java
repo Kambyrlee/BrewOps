@@ -22,6 +22,7 @@ public class CustomerListFragment extends Fragment {
     private RecyclerView recyclerView;
     private CustomerAdapter adapter;
     private Repository repository;
+    private boolean isManager;
 
     @Nullable
     @Override
@@ -33,8 +34,31 @@ public class CustomerListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.customer_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         repository = new Repository(requireActivity().getApplication());
-        adapter = new CustomerAdapter(new ArrayList<>());
+
+        if (getArguments() != null) {
+            isManager = getArguments().getBoolean("isManager", false);
+        }
+
+        adapter = new CustomerAdapter(new ArrayList<>(),
+                new CustomerAdapter.OnCustomerClickListener() {
+                    @Override
+                    public void onCustomerClick(Customer customer) {
+                        return;
+                    }
+
+                    @Override
+                    public void onEditClick(Customer customer) {
+                        if (isManager) openCustomerEditor(customer);
+                    }
+                },
+                isManager
+        );
         recyclerView.setAdapter(adapter);
+
+        requireActivity().getSupportFragmentManager()
+                .setFragmentResultListener("customerListUpdate", this, (key, bundle) -> {
+                    if (bundle.getBoolean("refreshNeeded", false)) loadCustomers();
+                });
 
         loadCustomers();
 
@@ -58,6 +82,17 @@ public class CustomerListFragment extends Fragment {
             requireActivity().runOnUiThread(() -> adapter.updateList(customers));
         }).start();
     }
+    private void openCustomerEditor(Customer customer) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("customerID", customer.getCustomerID());
 
+        CustomerEditorFragment editor = new CustomerEditorFragment();
+        editor.setArguments(bundle);
 
+        requireActivity().findViewById(R.id.manager_fragment_container).setVisibility(View.VISIBLE);
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.manager_fragment_container, editor)
+                .addToBackStack(null)
+                .commit();
+    }
 }

@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/customer_editor_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create or Edit Customer"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp" />
+
+    <EditText
+        android:id="@+id/edit_customer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Name" />
+
+    <EditText
+        android:id="@+id/edit_customer_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Drink Order"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:id="@+id/customer_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Date"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/edit_customer_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Date"
+        android:background="@color/gray"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/button_save_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Customer"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/button_delete_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Customer"
+        android:visibility="gone"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

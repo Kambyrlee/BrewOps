@@ -1,4 +1,4 @@
-package com.example.brewopscoffeeshoptracker.UI;
+package com.example.brewopscoffeeshoptracker.UI.Recipe;
 
 import android.app.AlertDialog;
 import android.os.Bundle;

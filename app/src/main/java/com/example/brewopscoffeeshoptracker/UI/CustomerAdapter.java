@@ -3,6 +3,7 @@ package com.example.brewopscoffeeshoptracker.UI;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,11 +17,19 @@ import java.util.Date;
 import java.util.List;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>{
+    public interface OnCustomerClickListener {
+        void onCustomerClick(Customer customer);
+        void onEditClick(Customer customer);
+    }
 
     private List<Customer> customers;
+    private boolean isManager;
+    private final OnCustomerClickListener listener;
 
-    public CustomerAdapter(List<Customer> customers){
+    public CustomerAdapter(List<Customer> customers, OnCustomerClickListener listener, boolean isManager){
         this.customers = customers;
+        this.listener = listener;
+        this.isManager = isManager;
     }
 
     @NonNull
@@ -43,6 +52,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
                 : "No date";
         holder.date.setText("Date: " + dateStr);
 
+        holder.itemView.setOnClickListener(v -> listener.onCustomerClick(customer));
+        if (isManager) {
+            holder.editIcon.setVisibility(View.VISIBLE);
+            holder.editIcon.setOnClickListener(v -> listener.onEditClick(customer));
+        } else {
+            holder.editIcon.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -55,12 +72,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     }
     static class CustomerViewHolder extends RecyclerView.ViewHolder {
         TextView name, order, date;
+        ImageView editIcon;
 
         CustomerViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.customer_name);
             order = itemView.findViewById(R.id.customer_order);
             date = itemView.findViewById(R.id.customer_date);
+            editIcon = itemView.findViewById(R.id.customer_edit_icon);
         }
     }
 }

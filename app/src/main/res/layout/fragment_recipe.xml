@@ -8,7 +8,7 @@
     android:paddingTop="16dp"
     android:paddingBottom="8dp"
     android:background="@color/gray"
-    tools:context=".UI.RecipeFragment">
+    tools:context=".UI.Recipe.RecipeFragment">
 
     <!-- SEARCH BAR -->
     <EditText
