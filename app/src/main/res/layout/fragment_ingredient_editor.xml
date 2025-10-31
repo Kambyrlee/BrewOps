@@ -1,0 +1,60 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ingredient_editor_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create or Edit Ingredient"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
+
+        <EditText
+            android:id="@+id/edit_ingredient_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient Name" />
+
+        <EditText
+            android:id="@+id/edit_ingredient_unit_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unit Price ($)"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edit_ingredient_servings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Servings per Unit"
+            android:inputType="number"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/button_save_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Ingredient"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/dk_blue"/>
+
+        <Button
+            android:id="@+id/button_delete_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Ingredient"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dk_blue"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>

@@ -1,16 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ingredient_manager_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/gray"
+    tools:context=".UI.IngredientManagerFragment">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/ingredient_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search ingredients..."
+            android:padding="12dp"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:background="@drawable/search_bar_bg"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp" />
+
+        <FrameLayout
+            android:id="@+id/ingredient_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_ingredient"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="THIS IS INGREDIENT FRAGMENT"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="24dp"
+        android:src="@drawable/outline_add_circle_24"
+        app:backgroundTint="@color/green_gray"
+        app:tint="@color/white"
+        app:layout_anchor="@id/ingredient_content_container"
+        app:layout_anchorGravity="bottom|end"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="12dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import com.example.brewopscoffeeshoptracker.database.entities.Customer;
+import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
 
 import java.util.List;
@@ -26,14 +28,23 @@ public interface IngredientDAO {
     @Query("SELECT * FROM ingredients WHERE ingredientID = :id")
     Ingredient getIngredientByID(int id);
 
+    @Query("SELECT * FROM ingredients WHERE name LIKE '%' || :query || '%' ORDER BY name ASC")
+    List<Ingredient> searchIngredients(String query);
 
-    //@Transaction
-   // @Query("SELECT * FROM ingredients WHERE ingredientID = :id")
-    //List<IngredientWithDrinks> getIngredientWithDrinks(int id);
 
-   // @Transaction
-   // @Query("SELECT * FROM ingredients")
-    //List<IngredientWithDrinks> getAllIngredientsWithDrinks();
+    @Query("SELECT DISTINCT name FROM (" +
+            "SELECT name FROM coffee_drinks WHERE drinkID IN " +
+            "(SELECT drinkID FROM coffee_ingredients WHERE ingredientID = :ingredientID) " +
+            "UNION ALL " +
+            "SELECT name FROM tea_drinks WHERE drinkID IN " +
+            "(SELECT drinkID FROM tea_ingredients WHERE ingredientID = :ingredientID) " +
+            "UNION ALL " +
+            "SELECT name FROM other_drinks WHERE drinkID IN " +
+            "(SELECT drinkID FROM other_ingredients WHERE ingredientID = :ingredientID)" +
+            ")")
+    List<String> getDrinkNamesByIngredient(int ingredientID);
+
+
 
 
 }

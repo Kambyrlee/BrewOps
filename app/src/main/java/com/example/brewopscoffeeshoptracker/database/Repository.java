@@ -117,6 +117,15 @@ public class Repository {
     }
 
     //INGREDIENTS
+    public List<String> getDrinkNamesByIngredient(int ingredientID){
+        return ingredientDAO.getDrinkNamesByIngredient(ingredientID);
+    }
+    public Ingredient getIngredientByID(int id) {
+        return ingredientDAO.getIngredientByID(id);
+    }
+    public List<Ingredient> searchIngredients(String query) {
+        return ingredientDAO.searchIngredients(query);
+    }
     public void insertIngredient(Ingredient ingredient){
         executor.execute(()-> ingredientDAO.insertIngredient(ingredient));
     }
