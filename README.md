@@ -29,5 +29,6 @@ If you need additional support, please navigate to the course page and reach out
 Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
 
 ## Attributions
-<a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>  
 <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Anggara - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/coffee" title="coffee icons">Coffee icons created by Freepik - Flaticon</a>

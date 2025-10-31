@@ -6,16 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.MainActivity">
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/coffee"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_banner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:id="@+id/main_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I am a..."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Welcome to BrewOps Coffee Shop Tracker!"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintBottom_toTopOf="@id/sub_banner_main"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/sub_banner_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select your role below to get started."
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_banner"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/employee_button"/>
 
     <Button
         android:id="@+id/employee_button"
