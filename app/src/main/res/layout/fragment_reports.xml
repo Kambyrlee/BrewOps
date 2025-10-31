@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/gray">
+
+    <TextView
+        android:id="@+id/reports_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reports"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select a button below to generate your report:"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/button_cost_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generate Drink Cost Report"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/dk_blue"/>
+
+    <Button
+        android:id="@+id/button_popular_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generate Popular Drinks Report"
+        android:backgroundTint="@color/dk_blue"/>
+
+    <FrameLayout
+        android:id="@+id/report_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"/>
+
+</LinearLayout>

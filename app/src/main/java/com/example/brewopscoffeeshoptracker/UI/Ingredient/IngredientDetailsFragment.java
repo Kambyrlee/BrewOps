@@ -1,4 +1,4 @@
-package com.example.brewopscoffeeshoptracker.UI;
+package com.example.brewopscoffeeshoptracker.UI.Ingredient;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.brewopscoffeeshoptracker.R;
 import com.example.brewopscoffeeshoptracker.database.Repository;
-import com.example.brewopscoffeeshoptracker.database.entities.Drink;
 import com.example.brewopscoffeeshoptracker.database.entities.Ingredient;
 
 import java.util.List;

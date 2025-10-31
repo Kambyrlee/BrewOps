@@ -1,4 +1,4 @@
-package com.example.brewopscoffeeshoptracker.UI;
+package com.example.brewopscoffeeshoptracker.UI.Ingredient;
 
 import android.view.LayoutInflater;
 import android.view.View;

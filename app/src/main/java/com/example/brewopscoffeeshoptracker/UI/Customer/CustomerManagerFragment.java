@@ -1,4 +1,4 @@
-package com.example.brewopscoffeeshoptracker.UI;
+package com.example.brewopscoffeeshoptracker.UI.Customer;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,9 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.example.brewopscoffeeshoptracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class IngredientFragment extends Fragment {
-
-    private FloatingActionButton addIngredientFab;
+public class CustomerManagerFragment extends Fragment {
+    private FloatingActionButton addCustomerFab;
     private EditText searchBar;
 
     @Nullable
@@ -25,47 +24,50 @@ public class IngredientFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ingredient, container, false);
 
-        addIngredientFab = view.findViewById(R.id.fab_add_ingredient);
-        searchBar = view.findViewById(R.id.ingredient_search_bar);
+        View view = inflater.inflate(R.layout.fragment_customer_manager, container, false);
 
-        addIngredientFab.setOnClickListener(v-> openIngredientEditor());
-        addIngredientFab.bringToFront();
+        addCustomerFab = view.findViewById(R.id.fab_add_customer);
+        searchBar = view.findViewById(R.id.customer_search_bar_manager);
+        addCustomerFab.setOnClickListener(v -> openCustomerEditor());
+        addCustomerFab.bringToFront();
 
-        openIngredientList(null);
+        openCustomerList(null);
 
         searchBar.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                openIngredientList(s.length() > 0 ? s.toString() : null);
+                openCustomerList(s.length() > 0 ? s.toString() : null);
             }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
 
         return view;
     }
-
-    private void openIngredientEditor() {
-        IngredientEditorFragment editor = new IngredientEditorFragment();
+    private void openCustomerEditor() {
+        CustomerEditorFragment editor = new CustomerEditorFragment();
         requireActivity().findViewById(R.id.manager_fragment_container).setVisibility(View.VISIBLE);
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.manager_fragment_container, editor)
                 .addToBackStack(null)
                 .commit();
     }
-
-    private void openIngredientList(String query) {
-        IngredientListFragment listFragment = new IngredientListFragment();
+    private void openCustomerList(String query) {
+        CustomerListFragment listFragment = new CustomerListFragment();
         Bundle bundle = new Bundle();
         bundle.putBoolean("isManager", true);
         if (query != null) bundle.putString("searchQuery", query);
         listFragment.setArguments(bundle);
 
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.ingredient_content_container, listFragment)
+                .replace(R.id.customer_content_container, listFragment)
+                .addToBackStack(null)
                 .commit();
     }
+
 }

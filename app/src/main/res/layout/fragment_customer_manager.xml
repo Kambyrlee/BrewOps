@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".UI.CustomerManagerFragment">
+    tools:context=".UI.Customer.CustomerManagerFragment">
 
     <LinearLayout
         android:id="@+id/customer_manager_content"

@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.brewopscoffeeshoptracker.UI.Customer.CustomerManagerFragment;
+import com.example.brewopscoffeeshoptracker.UI.Ingredient.IngredientFragment;
 import com.example.brewopscoffeeshoptracker.UI.Recipe.RecipeManagerFragment;
-import com.example.brewopscoffeeshoptracker.UI.Recipe.ReportingFragment;
+import com.example.brewopscoffeeshoptracker.UI.Reports.ReportsFragment;
 
 public class ManagerAdapter extends FragmentStateAdapter {
     public ManagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -25,7 +27,7 @@ public class ManagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new IngredientFragment();
             case 3:
-                return new ReportingFragment();
+                return new ReportsFragment();
             default:
                 return new RecipeManagerFragment();
         }
