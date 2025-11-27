@@ -1,34 +1,97 @@
-<strong>**DO NOT DISTRIBUTE OR PUBLICLY POST SOLUTIONS TO THESE LABS. MAKE ALL FORKS OF THIS REPOSITORY WITH SOLUTION CODE PRIVATE. PLEASE REFER TO THE STUDENT CODE OF CONDUCT AND ETHICAL EXPECTATIONS FOR COLLEGE OF INFORMATION TECHNOLOGY STUDENTS FOR SPECIFICS. **</strong>
+# BrewOps – Mobile Operations App for Sleepy Seal Coffee Co.
 
-# WESTERN GOVERNORS UNIVERSITY 
-## D424 – SOFTWARE ENGINEERING CAPSTONE
-Welcome to Software Engineering Capstone! This is an opportunity for students to develop full stack software engineering documentation and applications. They will execute documentation, unit testing, revision of software applications, and deploy software applications with scripts and containers on a cloud platform.
+**BrewOps** is an Android mobile application built for Sleepy Seal Coffee Co. to centralize recipe management, ingredient tracking, and operational workflows.
 
-FOR SPECIFIC TASK INSTRUCTIONS AND REQUIREMENTS FOR THIS ASSESSMENT, PLEASE REFER TO THE COURSE PAGE.
-BASIC INSTRUCTIONS
-For this assessment, you will deploy your developed full stack software product to a web service of your choice.
+Developed using Java, Room Database, and activity-based navigation, BrewOps is an offline-first application designed for practical use in a real coffee shop environment. It demonstrates skills in Android development, database modeling, validation, multi-threaded processing, and structured software design.
 
+---
 
-## SUPPLEMENTAL RESOURCES  
-1.	How to clone a project to IntelliJ using Git?
+## Overview
 
-> Ensure that you have Git installed on your system and that IntelliJ is installed using [Toolbox](https://www.jetbrains.com/toolbox-app/). Make sure that you are using version 2022.3.2. Once this has been confirmed, click the clone button and use the 'IntelliJ IDEA (HTTPS)' button. This will open IntelliJ with a prompt to clone the proejct. Save it in a safe location for the directory and press clone. IntelliJ will prompt you for your credentials. Enter in your WGU Credentials and the project will be cloned onto your local machine.  
+BrewOps enables staff to manage recipes, ingredients, and operational data efficiently through a clean and intuitive interface. The app uses an embedded Room Database to store information locally, ensuring speed and reliability without requiring an internet connection.
 
-2. How to create a branch and start Development?
+The project showcases:
 
-- GitLab method
-> Press the '+' button located near your branch name. In the dropdown list, press the 'New branch' button. This will allow you to create a name for your branch. Once the branch has been named, you can select 'Create Branch' to push the branch to your repository.
+- Android UI development with XML layouts  
+- Room persistence with entities, DAOs, and repository classes  
+- ExecutorService for background threading  
+- RecyclerView for dynamic lists  
+- Custom validation and data-integrity safeguards  
+- Activity-based navigation without LiveData or ViewModel patterns  
 
-- IntelliJ method
-> In IntelliJ, Go to the 'Git' button on the top toolbar. Select the new branch option and create a name for the branch. Make sure checkout branch is selected and press create. You can now add a commit message and push the new branch to the local repo.
+---
 
-## SUPPORT
-If you need additional support, please navigate to the course page and reach out to your course instructor.
+## Tech Specs
 
-## FUTURE USE
-Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
+- **Java (Android)**
+- **Android Studio**
+- **Room Database (SQLite)**
+- **DAO + Repository Pattern**
+- **ExecutorService (background threading)**
+- **RecyclerView with custom adapters**
+- **Material Design components**
+
+---
+
+## Features
+
+### Recipe Management
+- Create, view, edit, and delete recipes  
+- Store ingredient lists, instructions, and metadata  
+- Efficient list rendering with RecyclerView  
+- Input validation to ensure complete and accurate entries  
+
+### Ingredient Management
+- Add, modify, and remove ingredients  
+- Track units, quantities, and descriptions  
+- Prevent deletion of ingredients referenced by active recipes  
+
+### Background Processing
+- Thread-safe database operations using ExecutorService  
+- Non-blocking UI interactions  
+- Graceful error handling for invalid or failed operations  
+
+### User Interface
+- Clean and simple UI based on Material Design  
+- Activity-based navigation for clarity and maintainability  
+- Organized layouts for intuitive user flow  
+
+### Data Integrity & Validation
+- Guard clauses to prevent illegal deletions  
+- Required-field validation for forms  
+- Room-level consistency through annotations and constraints  
+
+---
+
+## Future Enhancements
+
+- Low-stock alert system for ingredients  
+- Cloud synchronization (Firebase, AWS, etc.)  
+- User authentication and role-based access control  
+- Automated cost calculation per recipe  
+- PDF export of recipe details  
+- Search and filtering capabilities  
+
+---
 
 ## Attributions
-<a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>  
-<a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Anggara - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/coffee" title="coffee icons">Coffee icons created by Freepik - Flaticon</a>
+
+Elements of this project incorporate or were informed by:
+
+- Official Android Developer Documentation (developer.android.com)  
+- Example implementations of Room Database and RecyclerView  
+- Material Design guidelines  
+- General open-source patterns for repository and DAO architecture
+- <a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>  
+- <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Anggara - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/coffee" title="coffee icons">Coffee icons created by Freepik - Flaticon</a>  
+
+All business concepts and names related to **Sleepy Seal Coffee Co.** are fictional and created solely for academic and portfolio purposes.
+
+---
+
+## Author
+
+**Kambyrlee Heath**  
+*Software Engineer*  
+Developed as part of a professional software engineering portfolio.
